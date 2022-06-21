@@ -58,12 +58,15 @@
   <script>
     const root = document.documentElement;
     const input = document.querySelectorAll('input')
-    console.log(input);
-    console.log(input[0].value);
-    root.style.setProperty('--spacing',`${input[0].value}px`)
-    root.style.setProperty('--blur',`${input[1].value}px`)
-    root.style.setProperty('--base',`${input[2].value}`)
-
+    
+    input.forEach((input)=>{
+      input.addEventListener('change',changeCss)
+      input.addEventListener('mousemove',changeCss)
+    })
+    
+    function changeCss(e){
+      root.style.setProperty(`--${e.currentTarget.name}`,`${e.currentTarget.value}${e.currentTarget.dataset.sizing || ''}`)
+    }
   </script>
   <!-- 功能:透過畫面INPUT RANGE 來調整padding /background /color blur
     *第一次看到CSS filter，有點像濾鏡的概念，blur是模糊
@@ -74,7 +77,11 @@
     找js控制css變數的方法 document.documentElement   ok
     變數=input的value ok
     包事件
+  結
+    *mousemove一直觸發感覺很耗效能，但沒有找到其他適合的滑鼠事件
+    *currentTarget感覺很好用
+    *data-xx的取法是xx.dataset.sizing
+    *document.documentElement.style.setProperty 本來以為要加root指定，不需要。
     -->
-
 </body>
 </html>
