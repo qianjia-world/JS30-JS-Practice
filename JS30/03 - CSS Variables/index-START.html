@@ -26,6 +26,18 @@
       misc styles, nothing to do with CSS variables
     */
 
+    :root{
+      --spacing:10px;
+      --blur: 0px;
+      --base:#ffc600;
+    }
+
+    img{
+      padding: var(--spacing);
+      filter: blur(var(--blur));
+      background-color: var(--base);
+    }
+
     body {
       text-align: center;
       background: #193549;
@@ -51,7 +63,7 @@
     *他是透過css變數來改變
     *看起來是取value、取節點，改節點的style
   拆分:
-    寫img的css，,用css變數 
+    寫img的css，,用css變數 ok
     找js控制css變數的方法
     變數=input的value -->
 </body>
