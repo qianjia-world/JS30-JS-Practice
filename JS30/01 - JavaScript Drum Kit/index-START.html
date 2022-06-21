@@ -69,16 +69,22 @@
     audio.currentTime = 0;
     audio.play();
   }
+  //第一種class remove方法 監聽某個transitionend值
+  //範例所使用的e.propertyName!== 'transform'在連續按著的情況下會出bug
   const keys = Array.from(document.querySelectorAll('.key'));
   keys.forEach(key => key.addEventListener('transitionend', removeTransition));
-  
   function removeTransition(e) {
-    console.log(e.propertyName);
-    if (e.type !== 'transitionend') return;
+    if (e.propertyName !== 'border-bottom-color') return;
     e.target.classList.remove('playing')
   }
-  //範例所使用的e.propertyName!== 'transform'在連續按著的情況下會出bug
-
+  //第二種 監聽keyup
+  window.addEventListener('keyup' , removeClass);
+  function removeClass(e){
+    const key = document.querySelector(`div[data-key="${e.key}"]`)
+    key.classList.remove('playing')
+  }
+  //另外網路上還看到幾種做法，一種是toggle、一種是紀錄動畫的次數(按鍵按下去，無到新增樣式是1、有到無也是1)
+  //監聽transform會產生問題的原因:新增修改dom元素是class操作，會更花時間；動畫來自class本身，而我們的按鍵又是在操控class，這種情況很容易產生問題。
 </script>
 <!-- 功能說明:按下鍵盤對應字母按鍵後，有有聲音+效果(外邊線或shadow+字體震動)
 實作拆分:
