@@ -9,10 +9,10 @@
 
   <div class="controls">
     <label for="spacing">Spacing:</label>
-    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+    <input id="spacing" type="range" name="spacing" min="10" max="200" value="30" data-sizing="px">
 
     <label for="blur">Blur:</label>
-    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+    <input id="blur" type="range" name="blur" min="0" max="25" value="30" data-sizing="px">
 
     <label for="base">Base Color</label>
     <input id="base" type="color" name="base" value="#ffc600">
@@ -55,8 +55,15 @@
       width: 100px;
     }
   </style>
-
   <script>
+    const root = document.documentElement;
+    const input = document.querySelectorAll('input')
+    console.log(input);
+    console.log(input[0].value);
+    root.style.setProperty('--spacing',`${input[0].value}px`)
+    root.style.setProperty('--blur',`${input[1].value}px`)
+    root.style.setProperty('--base',`${input[2].value}`)
+
   </script>
   <!-- 功能:透過畫面INPUT RANGE 來調整padding /background /color blur
     *第一次看到CSS filter，有點像濾鏡的概念，blur是模糊
@@ -64,7 +71,10 @@
     *看起來是取value、取節點，改節點的style
   拆分:
     寫img的css，,用css變數 ok
-    找js控制css變數的方法
-    變數=input的value -->
+    找js控制css變數的方法 document.documentElement   ok
+    變數=input的value ok
+    包事件
+    -->
+
 </body>
 </html>
