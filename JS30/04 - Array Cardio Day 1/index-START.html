@@ -42,9 +42,7 @@
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names 複製inventors陣列裡first跟last names(記得這個會產生新陣列)
-    const mapName = inventors.map(function(obj){
-      return `${obj.first} ${obj.last}`
-    }) 
+    const mapName = inventors.map((obj) => `${obj.first} ${obj.last}`) 
     
     console.log(mapName);
     //一開始想得比較難，要把另外兩個陣列刪掉，列印出來，但只是要印成字串就好了
