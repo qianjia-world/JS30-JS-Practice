@@ -37,29 +37,67 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's 用filter取inventors陣列裡生在1500's的
+    console.log(inventors.filter(inventor => inventor.year>1499 && inventor.year<1600));
+    //他是回傳判斷為true的內容
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names 複製inventors陣列裡first跟last names(記得這個會產生新陣列)
+    const mapName = inventors.map(function(obj){
+      return `${obj.first} ${obj.last}`
+    }) 
+    
+    console.log(mapName);
+    //一開始想得比較難，要把另外兩個陣列刪掉，列印出來，但只是要印成字串就好了
+    //現在也想到，只要排成一個新陣列return，本來以為的也很好解決
+
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest 排序按照生日 老到年輕
-
+    console.log(inventors.sort(function(a,b){
+      return a.year-b.year
+    }))
     // Array.prototype.reduce()
-    // 4. How many years did all the inventors live all together? 所有的inventors一起生活幾年?還是總共生活幾年?
+    // 4. How many years did all the inventors live all together? 所有的inventors總共生活幾年?
+    const total = inventors.map(function(obj){
+      return obj.passed-obj.year
+    })
+    console.log(total.reduce(function(a,b){
+      return a+b
+    }));
+   //解答的算法更好，reduce的a,b a其實是總計 b是我們要累加的，也就是每個陣列，所以我在total做的事情，可以直接在reduce裡面做
 
     // 5. Sort the inventors by years lived 排序inventors的存活時間排序
+    console.log(inventors.sort((a,b)=>{
+      return (a.passed-a.year) - (b.passed-b.year)
+    }));
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name 創建一個清單，在下面這個網址Boulevards in Paris列表裡面名字包含de的
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
-
+    //在瀏覽器操作 取a節點 nodelist轉陣列取a.title的內容，filter用a.includes('de')取de
     // 7. sort Exercise 
     // Sort the people alphabetically by last name 按姓氏字母順序對人員進行排序
-
+    const name = people.sort((a,b)=>{
+      const [lasta,noa] = a.split(', ')
+      const [lastb,nob] = b.split(', ')
+      return lasta > lastb ? 1:-1;
+    })
+    console.log(name);
+  
     // 8. Reduce Exercise
     // Sum up the instances of each of these總結每一個的實例
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
+    const sum = data.reduce(function(obj,item){
+      if(!obj[item]){
+        obj[item] = 0
+      }
+      obj[item]+=1
+      return obj
+    },{}) //設計就是如果你要自訂初始值，在這裡指定
+    console.log(sum);
+    //建一個陣列，如果沒有叫這屬性的，新增然後+1；如果有這屬性+1，最後回傳物件...
+    //這也太難了吧!!!
   </script>
 </body>
 </html>
