@@ -64,7 +64,6 @@
     const audio = document.querySelector(`audio[data-key="${e.key}"]`)
     const key = document.querySelector(`div[data-key="${e.key}"]`);
     if(!audio) return;
-
     key.classList.add('playing');
     audio.currentTime = 0;
     audio.play();
@@ -81,6 +80,7 @@
   window.addEventListener('keyup' , removeClass);
   function removeClass(e){
     const key = document.querySelector(`div[data-key="${e.key}"]`)
+    if(!key) return;
     key.classList.remove('playing')
   }
   //另外網路上還看到幾種做法，一種是toggle、一種是紀錄動畫的次數(按鍵按下去，無到新增樣式是1、有到無也是1)
@@ -92,6 +92,6 @@
 2. 當按下按鍵後，觸發事件
     =>將按鍵key值跟音檔、div的key值比對，如果有相同的，播放那一個音檔；同時div加入一個class(css效果)
 3. 當放開按鍵後，移除效果 -->
-
+<!--只有小寫可以偵測到-->
 </body>
 </html>
