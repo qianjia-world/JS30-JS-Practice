@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead 👀</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js" integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+
+  <form class="search-form">
+    <input type="text" class="search" placeholder="City or State">
+    <ul class="suggestions">
+      <li>Filter for a city</li>
+      <li>or a state</li>
+    </ul>
+  </form>
+  
+  <script>
+  //取api、存資料
+  const api = `https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json`
+  
+  let data = []
+  axios.get(api)
+    .then((res)=>{
+      data = res.data.map((item)=> `${item.city},${item.state}`)
+      console.log(data);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+
+  //取節點、監聽
+  const search = document.querySelector('.search')
+  search.addEventListener('input',getSearch,false)
+
+  //執行函式:取值、比較、組字串、取節點、取代
+  function getSearch(e){
+    console.log(e.target.value);
+    const regex = new RegExp(e.target.value, 'gi');
+    const list = data.filter((item)=>item.match(regex))
+    console.log(list);
+    let string = ''
+    for (let index = 0; index < list.length; index++) {
+      string += `<li>${list[index]}</li>`
+    }
+    const ul = document.querySelector('.suggestions')
+    ul.innerHTML = string
+  } 
+</script>
+</body>
+</html>
