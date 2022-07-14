@@ -6,3 +6,8 @@ canvas
 
 監聽:滑鼠事件
 節點:canvas
+
+
+總結，主要遇到的問題
+1. 用window.innerWidth他的寬會多一個滾輪區，不會剛好滿版
+2. 不能用css canvas{w:100% h:100%}的方式，要js指定才行(卡爆久)
