@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mouse Shadow</title>
+</head>
+<body>
+
+  <div class="hero">
+    <h1 contenteditable>🔥WOAH!</h1>
+  </div>
+
+  <style>
+  html {
+    color: black;
+    font-family: sans-serif;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+  }
+
+  h1 {
+    text-shadow: 10px 10px 0 rgba(0,0,0,1);
+    font-size: 100px;
+  }
+  </style>
+
+<script>
+  //監聽畫面的mousemove事件
+  window.addEventListener('mousemove',getShadow)
+  function getShadow(e){
+    //得到滑鼠位移的位置
+    console.log(e.clientX,e.clientY);
+    const [midX,midY] = [window.innerWidth/2,window.innerHeight/2] 
+    //得到中心點跟滑鼠位置的差
+    let distanceX = midX-e.clientX
+    let distanceY = midY-e.clientY
+    console.log(distanceX,distanceY);
+    document.querySelector('h1').style.textShadow = `
+      ${distanceX}px ${distanceY}px 0 rgba(255,0,255,0.7), 
+      ${-distanceX}px ${distanceY}px 0 rgba(0,255,255,0.7),
+      ${distanceY}px ${-distanceX}px 0 rgba(0,255,0,0.7),
+      ${-distanceY}px ${distanceX}px 0 rgba(0,0,255,0.7)`;
+  }
+</script>
+</body>
+</html>
