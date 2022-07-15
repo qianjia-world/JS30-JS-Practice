@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Key Detection</title>
+  <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
+</head>
+<body>
+<script>
+  const password = 'qianjia'
+  let input = ''
+  window.addEventListener('keyup', getword)
+
+  function getword(e){
+    console.log(e.key);
+    input+=e.key
+    console.log(input);
+    if(input===password){
+      cornify_add()
+    }
+  }
+</script>
+</body>
+</html>
