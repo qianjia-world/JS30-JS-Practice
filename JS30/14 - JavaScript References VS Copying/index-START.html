@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Reference VS Copy</title>
+</head>
+<body>
+  <P>
+    介紹傳值傳參考<br>
+    基礎型別傳值，物件型別傳參考<br>
+    傳參考若想COPY但不影響原物件<br>
+    方法1 Array.prototype.slice() 回傳一個新陣列物件，為原陣列選擇之 begin 至 end（不含 end）部分的淺拷貝<br>
+    方法2 Array.prototype.concat() 合併兩個或多個陣列<br>
+    方法3 const team4 = [...players];淺拷貝<br>
+    方法4 const team5 = Array.from(players); 新陣列物件<br>
+    方法5 const dev2 = JSON.parse(JSON.stringify(wes)); JSON轉兩次，深拷貝<br>
+
+  </P>
+  <script>
+    // start with strings, numbers and booleans
+
+    // Let's say we have an array
+    const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+
+    // and we want to make a copy of it.
+
+    // You might think we can just do something like this:
+
+    // however what happens when we update that array?
+
+    // now here is the problem!
+
+    // oh no - we have edited the original array too!
+
+    // Why? It's because that is an array reference, not an array copy. They both point to the same array!
+
+    // So, how do we fix this? We take a copy instead!
+
+    // one way
+
+    // or create a new array and concat the old one in
+
+    // or use the new ES6 Spread
+
+    // now when we update it, the original one isn't changed
+
+    // The same thing goes for objects, let's say we have a person object
+
+    // with Objects
+    const person = {
+      name: 'Wes Bos',
+      age: 80
+    };
+
+    // and think we make a copy:
+
+    // how do we take a copy instead?
+
+    // We will hopefully soon see the object ...spread
+
+    // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+
+  </script>
+
+</body>
+</html>
