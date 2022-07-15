@@ -1,0 +1,23 @@
+播放器=>每個都有功能=>取節點
+取節點:
+video
+progress
+progress__filled
+toggle button 
+input range *2
+button data-skip*2
+
+哪些要綁監聽:
+video 'click' 'play' 'pause' 'timeupdate'
+progress 'click' 'mouseover' 'mousedown' 'mouseup'
+progress__filled 'mousedown''mouseover'
+input range 'change' 'mouseover'
+toggle button 'click'
+button data-skip*2 'click'
+
+功能:
+播放/暫停 video toggle 'click' 
+skip按鈕 foreach 'click' video.currenttime
+range按鈕 foreach 'change' 'mouseover' this.name重點
+進度條跟時間 'timeupdate' style.flexBasis
+點擊/拉進度條 'click' 'mousemove' up、down
